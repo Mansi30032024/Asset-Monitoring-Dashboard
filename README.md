@@ -66,9 +66,6 @@ assestsDashboard/
 `-- README.md
 ```
 
-## System Flow Diagram
-
-![Asset Monitoring System Flow](docs/asset-monitoring-flow.svg)
 
 
 ## API Endpoints

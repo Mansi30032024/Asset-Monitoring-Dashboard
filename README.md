@@ -107,7 +107,8 @@ CLIENT_URL=http://localhost:5173
 Create a `.env` file inside the `frontend` folder for production-style local testing:
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=https://your-backend.onrender.com
+Local dev: http://localhost:5000
 ```
 
 For normal local development, the frontend can also use the Vite proxy configured in `frontend/vite.config.js`, so `VITE_API_URL` is optional locally.
@@ -127,11 +128,6 @@ npm install
 npm run dev
 ```
 
-The backend runs on:
-
-```text
-http://localhost:5000
-```
 
 ### 3. Install frontend dependencies
 

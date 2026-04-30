@@ -174,3 +174,5 @@ router.delete('/:assetID', jwtAuthMiddleware, async (req, res) => {
 });
 
 module.exports = router;
+
+//router

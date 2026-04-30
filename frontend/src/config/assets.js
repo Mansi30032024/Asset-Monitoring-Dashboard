@@ -20,3 +20,6 @@ export const assetTypes = [
 ]
 
 export const statuses = ['active', 'inactive', 'maintenance']
+
+
+//asset

@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to Asset Monitoring Dashboard');
 });
 
+//routes
 const userRoutes = require('./routes/userRoutes');
 const assetRoutes = require('./routes/assetRoutes');
 

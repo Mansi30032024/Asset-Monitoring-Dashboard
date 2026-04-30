@@ -59,3 +59,7 @@ function AssetsTable({ assets, onDeleteAsset, onEditAsset, onStatusChange }) {
 }
 
 export default AssetsTable
+
+
+
+//asset

@@ -96,3 +96,5 @@ function AssetForm({ editId, formData, onCancelEdit, onChange, onSubmit }) {
 }
 
 export default AssetForm
+
+//asset

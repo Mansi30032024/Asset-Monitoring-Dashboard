@@ -35,3 +35,6 @@ export const changeAssetStatus = ({ assetId, status, token }) =>
       headers: authHeaders(token)
     }
   )
+
+  
+//asset

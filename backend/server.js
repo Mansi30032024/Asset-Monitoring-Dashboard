@@ -6,19 +6,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 app.use(bodyParser.json());
-const allowedOrigins = (process.env.CLIENT_URL || '')
-  .split(',')
-  .map((origin) => origin.trim().replace(/\/$/, ''))
-  .filter(Boolean);
+const allowedOrigin = process.env.CLIENT_URL;
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin.replace(/\/$/, ''))) {
-      return callback(null, true);
-    }
-
-    return callback(new Error('Not allowed by CORS'));
-  }
+  origin: allowedOrigin || '*'
 }));
 
 const PORT = process.env.PORT || 5000;

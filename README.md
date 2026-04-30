@@ -104,14 +104,13 @@ JWT_SECRET=your_jwt_secret
 CLIENT_URL=http://localhost:5173
 ```
 
-Create a `.env` file inside the `frontend` folder for production-style local testing:
+Create a `.env` file inside the `frontend` folder:
 
 ```env
-VITE_API_URL=https://your-backend.onrender.com
-Local dev: http://localhost:5000
+VITE_API_URL=http://localhost:5000
 ```
 
-For normal local development, the frontend can also use the Vite proxy configured in `frontend/vite.config.js`, so `VITE_API_URL` is optional locally.
+This setup keeps the app running on your local machine while using MongoDB Atlas as the online database.
 
 ## Installation and Setup
 
@@ -160,91 +159,69 @@ This project does not require `react-router-dom`. It uses local React state to s
 
 After successful login or signup, the JWT token is saved in `localStorage`, and the user is redirected to the dashboard.
 
-## Deployment
+## Local App With MongoDB Atlas
 
-This project can be deployed with:
+This project is currently intended to run locally:
 
-- Backend on Render
-- Frontend on Vercel
-- Database on MongoDB Atlas
+- Backend: `http://localhost:5000`
+- Frontend: `http://localhost:5173`
+- Database: MongoDB Atlas
 
 ### 1. Prepare MongoDB Atlas
 
 Create a MongoDB Atlas cluster and copy the connection string.
 
-Use this connection string as the backend `MONGODB_URL` environment variable:
+Use this connection string as the backend `MONGODB_URL` value:
 
 ```env
 MONGODB_URL=mongodb+srv://username:password@cluster-name.mongodb.net/database-name
 ```
 
-Make sure your Atlas database network access allows the deployed backend to connect.
-
-### 2. Deploy Backend on Render
-
-Create a new Render Web Service from your GitHub repository.
-
-Use these settings:
-
-| Setting | Value |
-| --- | --- |
-| Root Directory | `backend` |
-| Runtime | `Node` |
-| Build Command | `npm install` |
-| Start Command | `npm start` |
-
-Add these Render environment variables:
-
-```env
-MONGODB_URL=your_mongodb_atlas_connection_string
-JWT_SECRET=your_strong_secret_key
-CLIENT_URL=https://your-vercel-frontend-url.vercel.app
-```
-
-If you do not know the Vercel URL yet, deploy the backend first and temporarily leave `CLIENT_URL` empty. After the frontend is deployed, add the Vercel URL and redeploy the backend.
-
-Your backend URL will look like:
+Make sure MongoDB Atlas Network Access allows your current IP address. For local learning/testing, you can temporarily allow access from anywhere:
 
 ```text
-https://your-backend-name.onrender.com
+0.0.0.0/0
 ```
 
-Test it in the browser:
+### 2. Start Backend Locally
+
+Open a terminal:
+
+```bash
+cd backend
+npm run dev
+```
+
+The backend should print:
 
 ```text
-https://your-backend-name.onrender.com/
+Server is running on 5000
+Successfully connected to MongoDb
 ```
 
-### 3. Deploy Frontend on Vercel
+### 3. Start Frontend Locally
 
-Create a new Vercel project from the same GitHub repository.
+Open another terminal:
 
-Use these settings:
-
-| Setting | Value |
-| --- | --- |
-| Root Directory | `frontend` |
-| Framework Preset | `Vite` |
-| Build Command | `npm run build` |
-| Output Directory | `dist` |
-
-Add this Vercel environment variable:
-
-```env
-VITE_API_URL=https://your-backend-name.onrender.com
+```bash
+cd frontend
+npm run dev
 ```
 
-Redeploy the Vercel project after adding or changing environment variables.
+Open the local Vite URL:
 
-### 4. Final Deployment Checklist
+```text
+http://localhost:5173
+```
 
-- Backend Render service is running.
-- MongoDB Atlas connection string is added in Render.
-- `JWT_SECRET` is added in Render.
-- `VITE_API_URL` is added in Vercel.
-- `CLIENT_URL` in Render matches the deployed Vercel frontend URL.
-- Signup/login works from the deployed frontend.
-- Asset add, update, delete, and status update work after login.
+### 4. Local Checklist
+
+- `backend/.env` has `MONGODB_URL`, `JWT_SECRET`, and `CLIENT_URL=http://localhost:5173`.
+- `frontend/.env` has `VITE_API_URL=http://localhost:5000`.
+- Backend is running on port `5000`.
+- Frontend is running on port `5173`.
+- MongoDB Atlas allows your IP address.
+- Restart backend and frontend after changing any `.env` file.
 
 ## Generic Use Cases
 
